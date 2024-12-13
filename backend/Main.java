@@ -46,7 +46,7 @@ public class Main {
 
         // POST METHOD, add new tasks
         private void handlePost(HttpExchange exchange) throws IOException{
-            // Read body's requirement
+            // read body's requirement
             InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
             BufferedReader reader = new BufferedReader(isr);
             StringBuffer requestBody = new StringBuffer();
@@ -57,10 +57,11 @@ public class Main {
                 requestBody.append(line);
             }
 
-            // Create a new task
+            // create a new task
             Task newTask = new Task(String.valueOf(taskList.size() + 1), requestBody.toString(), false);
             taskList.add(newTask);
 
+            //return sucess message
             String response = "Task Added!";
             exchange.sendResponseHeaders(200, response.getBytes().length);
 
@@ -69,6 +70,7 @@ public class Main {
             os.close();
         }
 
+        //list to JSON
         private String taskListToJson(){
             StringBuilder json = new StringBuilder("[");
             for(int i = 0; i < taskList.size(); i++){

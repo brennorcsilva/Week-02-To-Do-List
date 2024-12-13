@@ -6,7 +6,7 @@ public class Task {
     public Task(String id, String description, boolean completed) { 
         this.id = id;
         this.description = description;
-        this.completed = false;
+        this.completed = completed;
     }
 
     public String getId(){
